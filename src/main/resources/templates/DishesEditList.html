@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<title>Изменить</title>
+<head>
+    <th:block th:insert="fragments/head.html :: head"/>
+</head>
+<body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
+
+    <div class="main-container">
+        <div class="form-title">Введите данные</div>
+        <form class="container center_div login-form" method="POST" enctype="multipart/form-data"
+              th:action="@{/save/dishes/{uid}/ (uid=${product.id})}"
+              th:object="${product}">
+            <div class="form-group">
+                <label for="name">Название</label>
+                <input class="form-control" id="name" type="text" name="name"
+                       th:field="*{name}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error
+            </div>
+            <div class="form-group">
+                <label for="weight">Вес</label>
+                <input class="form-control" id="weight" type="text" name="weight"
+                       th:field="*{weight}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">weight Error
+            </div>
+            <div class="form-group">
+                <label for="calories">Калории</label>
+                <input class="form-control" id="calories" type="text" name="calories"
+                       th:field="*{calories}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}">calories Error
+            </div>
+            <div class="form-group">
+                <label for="fats">Жиры</label>
+                <input class="form-control" id="fats" type="text" name="fats"
+                       th:field="*{fats}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('fats')}" th:errors="*{fats}">fats Error
+            </div>
+            <div class="form-group">
+                <label for="proteins">Белки</label>
+                <input class="form-control" id="proteins" type="text" name="proteins"
+                       th:field="*{proteins}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('proteins')}" th:errors="*{proteins}">proteins Error
+            </div>
+            <div class="form-group">
+                <label for="carbohydrates">Углеводы</label>
+                <input class="form-control" id="carbohydrates" type="text" name="carbohydrates"
+                       th:field="*{carbohydrates}"/>
+            </div>
+            <div class="row justify-content-center alert alert-danger" role="alert"
+                 th:if="${#fields.hasErrors('carbohydrates')}" th:errors="*{carbohydrates}">carbohydrates Error
+            </div>
+            <div>
+                <input type="submit" class="btn btn-success" th:value="Сохранить"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

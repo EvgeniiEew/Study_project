@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<title>Вход</title>
+<head>
+    <th:block th:insert="fragments/head.html :: head"/>
+</head>
+<body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
+
+    <div class="main-container">
+        <div class="login-form-wrap">
+            <div class="form-title ">Введите данные</div>
+            <form class="container center_div login-form" th:action="@{/dishesAdd}" method="post">
+                <div class="form-group">
+                    <label for="name">Название</label>
+                    <input class="form-control" id="name" type="text" name="name"/>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Вес</label>
+                    <input class="form-control" id="weight" type="text" name="weight"/>
+                </div>
+                <div class="form-group">
+                    <label for="calories">Калории</label>
+                    <input class="form-control" id="calories" type="text" name="calories"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="fats">Жиры</label>
+                    <input class="form-control" id="fats" type="text" name="fats"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="proteins">Белки</label>
+                    <input class="form-control" id="proteins" type="text" name="proteins"/>
+                </div>
+                <div class="form-group">
+                    <label for="carbohydrates">Углеводы</label>
+                    <input class="form-control" id="carbohydrates" type="text" name="carbohydrates"/>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-success" th:value="Сохранить"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

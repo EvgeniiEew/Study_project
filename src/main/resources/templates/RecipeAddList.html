@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<title>Вход</title>
+<head>
+    <th:block th:insert="fragments/head.html :: head"/>
+</head>
+<body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
+
+    <div class="main-container">
+        <div class="login-form-wrap">
+            <div class="form-title ">Введите данные Рецепта</div>
+            <form class="container center_div login-form"
+                  th:action="@{/recipe/{uid}/add (uid=${ProductRecipe.getNameRecipe()})}" th:object="${ProductRecipe}"
+                  method="post">
+                <fieldset>
+                    <div th:each="products, itemStat : *{listProduct}">
+
+                        <div class="row justify-content-center  p-1">
+                            <div class="col-sm  p-1 justify-content-end"
+                                 style="text-align: right">
+                                Name of product №
+                                <th:block th:text="${itemStat.index}"/>
+                            </div>
+                            <div class="col-sm  p-1">
+
+                                <select name="role" th:field="*{listProduct[__${itemStat.index}__].name}">
+                                    <option
+                                            th:each="name : ${ProductDb}"
+
+                                            th:text="${name}" th:value="${name}">
+                                    </option>
+                                </select>
+
+                                Weght of product №
+                                <input type="text" th:field="*{listProduct[__${itemStat.index}__].weight}"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center  p-1">
+                        <input class="btn btn-primary" type="submit" value="Сохранить рецепт"/>
+                    </div>
+                </fieldset>
+            </form>
+
+            <th:block th:insert="fragments/scripts.html :: js"/>
+        </div>
+    </div>
+
+</body>
+</html>

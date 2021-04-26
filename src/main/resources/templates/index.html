@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:z-index="http://www.w3.org/1999/xhtml" xmlns:height="http://www.w3.org/1999/xhtml"
+      xmlns:position="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert="fragments/head.html :: head"/>
+</head>
+<body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
+    <img
+            th:src="@{ https://image.freepik.com/free-photo/young-brunette-woman-with-displeased-expression-smells-spoiled-soup-in-stew-pan-feels-musty-smell-at-home-kitchen-stands-against-refrigerator_176532-4240.jpg}"
+            position:relative; height:100%; z-index:-1;>
+</body>
+</html>

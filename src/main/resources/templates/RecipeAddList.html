@@ -10,7 +10,7 @@
 
     <div class="main-container">
         <div class="login-form-wrap">
-            <div class="form-title ">Введите данные Рецепта</div>
+            <div class="row justify-content-center  p-2	">Введите данные Рецепта</div>
             <form class="container center_div login-form"
                   th:action="@{/recipe/{uid}/add (uid=${ProductRecipe.getNameRecipe()})}" th:object="${ProductRecipe}"
                   method="post">

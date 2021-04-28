@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 public class RefrigeratorController {
     private final String LIST_OF_DISHES = "DishesList";
-    private final String LIST_OF_DISHES_Add = "DishesAddList";
+    private final String LIST_OF_DISHES_ADD = "DishesAddList";
     private final String LIST_OF_DISHES_EDIT = "DishesEditList";
     @Autowired
     private IProductService iProductService;
@@ -32,13 +32,13 @@ public class RefrigeratorController {
 
     @GetMapping("/dishesAdd")
     public String setDishes() {
-        return LIST_OF_DISHES_Add;
+        return LIST_OF_DISHES_ADD;
     }
 
     @PostMapping("/dishesAdd")
     public String setSaveDishes(@Valid ProductDto productDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return LIST_OF_DISHES_Add;
+            return LIST_OF_DISHES_ADD;
         }
 //      Product product =   iProductService.save(conversionService.convert(productDto, Product.class));
         iProductService.save(productDto);

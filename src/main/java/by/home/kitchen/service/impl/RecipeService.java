@@ -6,10 +6,14 @@ import by.home.kitchen.service.IProductRecipeService;
 import by.home.kitchen.service.IRecipeService;
 import by.home.kitchen.service.repository.RecipeJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -20,8 +24,20 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public List<Recipe> findAll() {
-        return null;
+        return recipeJpaRepository.findAll();
     }
+
+    @Override
+    public Optional<Recipe> findById(Integer id) {
+        return recipeJpaRepository.findById(id);
+    }
+
+    @Override
+    public Page<Recipe> findAllRecipeNative(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return recipeJpaRepository.findAllByIdIn(recipeJpaRepository.findAllActiveRecipeNative(), pageable);
+    }
+
 
     @Override
     public void save(Recipe recipe) {

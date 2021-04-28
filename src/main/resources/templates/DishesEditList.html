@@ -9,7 +9,7 @@
     <th:block th:insert="fragments/navBar.html :: navBar"/>
 
     <div class="main-container">
-        <div class="form-title">Введите данные</div>
+        <div class="row justify-content-center alert alert-danger">Введите данные</div>
         <form class="container center_div login-form" method="POST" enctype="multipart/form-data"
               th:action="@{/save/dishes/{uid}/ (uid=${product.id})}"
               th:object="${product}">

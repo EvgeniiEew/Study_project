@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<title>Список всех рецептов</title>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block th:insert="fragments/head.html :: head"/>
 </head>
 <body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
 
+    <div class="container">
+        <div class="starter-template text py-5 px-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Номер рецепта</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Просмотр или изменение рецепта</th>
+                </tr>
+                </thead>
+
+                <tr th:each="recipe : ${recipesList}">
+                    <!--                    <td><img th:src="@{/recipe/{uid}/img(uid=${recipe.id})}" width="100"-->
+                    <!--                             height="100" alt=""></td>-->
+                    <td th:text="${recipe.id}"/>
+                    <td th:text="${recipe.nameRecipe}"/>
+                    <!--                    <td th:action="@{/patient/{uid}/discharges (uid=${user.id})}" />-->
+                    <!--                    <form method="POST" enctype="multipart/form-data"-->
+                    <!--                          th:action="@{/patient/{uid}/discharges (uid=${user.id})}">-->
+                    <!--                        <td>-->
+                    <!--                            <input class="btn btn-outline-success btn-sm" type="submit"-->
+                    <!--                                   th:value="#{label.discharges.write.out}"/>-->
+                    <!--                        </td>-->
+                    <!--                    </form>-->
+                </tr>
+            </table>
+            <div th:if="${totalPages > 1}">
+
+                <div class="row col-sm-10">
+                    <div class="col-sm-2">
+                        Всего: [[${totalItems}]]
+                    </div>
+                    <div class="col-sm-1">
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${currentPage != i}" th:href="@{'/recipe/list/'+ ${i}}"> [[${i}]]</a>
+                            <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                        </span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}"
+                           th:href="@{'/recipe/list/' + ${currentPage + 1}}"> Next </a>
+                        <span th:unless="${currentPage < totalPages}">Next</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/recipe/list/' + ${totalPages}}">
+                            Last </a>
+                        <span th:unless="${currentPage < totalPages}">Last</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--    <form th:action="@{/recipe/edit}" method="GET">-->
+    <!--        <ol class="rounded">-->
+    <!--            <li><a href="#">Элемент списка</a></li>-->
+    <!--            <li><a href="#">Элемент списка</a></li>-->
+    <!--            <li><a href="#">Элемент списка</a></li>-->
+    <!--            <li><a href="#">Элемент списка</a></li>-->
+    <!--            <li><a href="#">Элемент списка</a></li>-->
+    <!--        </ol>-->
+
+    <!--    </form>-->
+
+
+    <th:block th:insert="fragments/scripts.html :: js"/>
 </body>
 </html>

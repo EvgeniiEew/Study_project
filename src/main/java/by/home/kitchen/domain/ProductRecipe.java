@@ -1,9 +1,6 @@
 package by.home.kitchen.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,7 +21,7 @@ public class ProductRecipe {
     private Integer proteins;
     private Integer carbohydrates;
     private boolean inStock;
-
+    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne
     @JoinColumn(name = "recipe_id")

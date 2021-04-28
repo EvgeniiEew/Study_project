@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<title>Cook</title>
+<head>
+    <th:block th:insert="fragments/head.html :: head"/>
+</head>
+<body>
+    <th:block th:insert="fragments/navBar.html :: navBar"/>
+
+    <div class="main container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Название</th>
+                <th scope="col">Продукты</th>
+                <th scope="col">Колличество блюд которое можно готовить</th>
+                <th scope="col">готовить</th>
+
+            </tr>
+            </thead>
+            <tr th:each="recepie : ${recipeDtoList}">
+                <form method="POST" enctype="multipart/form-data"
+                    th:action="@{/recipe/cook/}">
+                <td th:text="${recepie.idRecipe}"/>
+                <td th:text="${recepie.nameRecipe}"/>
+
+                <td class="btn-group dropleft">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        смотреть
+                    </button>
+                    <div class="dropdown-menu">
+                        <div th:each="recepieListPr : ${recepie.getRecipeList()}">
+                            <a class="dropdown-item" th:text="${recepieListPr.name}"> </a>
+                            вес
+                            <a class="dropdown-item" th:text="${recepieListPr.weight}"> </a>
+                            калории
+                            <a class="dropdown-item" th:text="${recepieListPr.calories}"> </a>
+                            жиры
+                            <a class="dropdown-item" th:text="${recepieListPr.fats}"> </a>
+                            белки
+                            <a class="dropdown-item" th:text="${recepieListPr.proteins}"> </a>
+                            углеводы
+                            <a class="dropdown-item" th:text="${recepieListPr.carbohydrates}"> </a>
+                        </div>
+                    </div>
+                </td>
+                    <td>
+                    <td>
+                        <input class="btn btn-outline-success btn-sm" type="submit" th:value="Готовить"/>
+                    </td>
+                    </td>
+
+
+
+                <td th:text="${recepie.countDish}"/>
+                </form>
+                <th:block th:insert="fragments/scripts.html :: js"/>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

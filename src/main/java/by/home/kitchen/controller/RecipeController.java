@@ -2,6 +2,7 @@ package by.home.kitchen.controller;
 
 import by.home.kitchen.domain.ProductRecipe;
 import by.home.kitchen.domain.Recipe;
+import by.home.kitchen.domain.RecipeDto;
 import by.home.kitchen.service.IProductService;
 import by.home.kitchen.service.IRecipeService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class RecipeController {
     private final String LIST_OF_RECIPE = "RecipeList";
     private final String LIST_OF_RECIPE_ADD = "RecipeAddList";
     private final String LIST_OF_ADD_RECIPE_COUNT = "RecipeCountList";
+    private final String LIST_OF_RECIPE_CAN_COOK = "recipeCanCookList";
 
     @GetMapping("/recipe/counting")
     public String getCountSelector(Model model) {
@@ -62,6 +64,17 @@ public class RecipeController {
         model.addAttribute("recipesList", recipesList);
         return LIST_OF_RECIPE;
     }
+
+    @GetMapping("/recipe/canCook/list")
+    public String getRecipeCanCookList(Model model) {
+        model.addAttribute("recipeDtoList", iRecipeService.dishesCanCook());
+        return LIST_OF_RECIPE_CAN_COOK;
+    }
+    @PostMapping("/recipe/cook/{count}")
+    public String cookDish(@PathVariable(value = "count")  Integer count){
+        return null;
+    }
+
 
 //    @GetMapping("/recipe/edit/{id}")
 //    public String recipeEdit(@PathVariable(value = "id") Integer id, Model model) {

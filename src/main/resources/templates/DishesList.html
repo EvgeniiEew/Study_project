@@ -8,38 +8,40 @@
 <body>
     <th:block th:insert="fragments/navBar.html :: navBar"/>
     <div class="main container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Номер</th>
-                <th scope="col">Название</th>
-                <th scope="col">Дата добавления</th>
-                <th scope="col">Вес еды</th>
-                <th scope="col">Калории</th>
-                <th scope="col">Жиры</th>
-                <th scope="col">Белки</th>
-                <th scope="col">Углеводы</th>
+        <div class="starter-template text py-5 px-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Дата добавления</th>
+                    <th scope="col">Вес еды</th>
+                    <th scope="col">Калории</th>
+                    <th scope="col">Жиры</th>
+                    <th scope="col">Белки</th>
+                    <th scope="col">Углеводы</th>
 
-            </tr>
-            </thead>
+                </tr>
+                </thead>
 
-            <tr th:each="product : ${products}">
-                <form method="POST" enctype="multipart/form-data"
-                      th:action="@{/edit/dishes/{uid}/ (uid=${product.id})}">
-                    <td th:text="${product.id}"/>
-                    <td th:text="${product.name}"/>
-                    <td th:text="${product.date}"/>
-                    <td th:text="${product.weight}"/>
-                    <td th:text="${product.calories}"/>
-                    <td th:text="${product.fats}"/>
-                    <td th:text="${product.proteins}"/>
-                    <td th:text="${product.carbohydrates}"/>
-                    <td>
-                        <input class="btn btn-outline-success btn-sm" type="submit" th:value="Изементь"/>
-                    </td>
-                </form>
-            </tr>
-        </table>
+                <tr th:each="product : ${products}">
+                    <form method="POST" enctype="multipart/form-data"
+                          th:action="@{/edit/dishes/{uid}/ (uid=${product.id})}">
+                        <td th:text="${product.id}"/>
+                        <td th:text="${product.name}"/>
+                        <td th:text="${product.date}"/>
+                        <td th:text="${product.weight}"/>
+                        <td th:text="${product.calories}"/>
+                        <td th:text="${product.fats}"/>
+                        <td th:text="${product.proteins}"/>
+                        <td th:text="${product.carbohydrates}"/>
+                        <td>
+                            <input class="btn btn-outline-success btn-sm" type="submit" th:value="Изементь"/>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

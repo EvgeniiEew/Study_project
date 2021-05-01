@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,7 +58,8 @@ public class RecipeService implements IRecipeService {
     public void save(List<Recipe> products) {
 
     }
-//    public List<RecipeDto> dishesCanCook2() {
+
+    //    public List<RecipeDto> dishesCanCook2() {
 //        List<RecipeDto> recipeDtoList = new ArrayList<>();
 //        List<Recipe> recipesList = recipeJpaRepository.findAll();
 //
@@ -70,10 +72,13 @@ public class RecipeService implements IRecipeService {
         for (Recipe recipe : recipesList) {
             RecipeDto recipeDto = new RecipeDto();
             createRecipeDto(recipe, recipeDto);
+            List<Integer> minCountDish = new ArrayList<>();
             for (ProductRecipe productRecipe : recipe.getListProduct()) {
-             Optional<Product> product =  productDb.stream().filter(u-> u.getName().equals(productRecipe.getName())).findFirst();
-                recipeDto.setCountDish( product.get().getWeight()/ productRecipe.getWeight());
+                Optional<Product> product = productDb.stream().filter(u -> u.getName().equals(productRecipe.getName())).findFirst();
+                minCountDish.add(product.get().getWeight() / productRecipe.getWeight());
             }
+            Integer min = Collections.min(minCountDish);
+            recipeDto.setCountDish(min);
             recipeDtoList.add(recipeDto);
         }
         return recipeDtoList;

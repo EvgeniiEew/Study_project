@@ -15,26 +15,97 @@
                     <th scope="col">Номер</th>
                     <th scope="col">Название</th>
                     <th scope="col">Дата добавления</th>
-                    <th scope="col">Вес еды</th>
                     <th scope="col">Калории</th>
                     <th scope="col">Жиры</th>
                     <th scope="col">Белки</th>
                     <th scope="col">Углеводы</th>
+                    <th scope="col">Обьем</th>
+                    <th scope="col">Изменить</th>
 
                 </tr>
                 </thead>
 
-                <tr th:each="product : ${products}">
+                <tr th:each="product : ${productLiquids}">
                     <form method="POST" enctype="multipart/form-data"
                           th:action="@{/edit/dishes/{uid}/ (uid=${product.id})}">
                         <td th:text="${product.id}"/>
                         <td th:text="${product.name}"/>
                         <td th:text="${product.date}"/>
-                        <td th:text="${product.weight}"/>
                         <td th:text="${product.calories}"/>
                         <td th:text="${product.fats}"/>
                         <td th:text="${product.proteins}"/>
                         <td th:text="${product.carbohydrates}"/>
+                        <td th:text="${product.volume}"/>
+                        <td>
+                            <input class="btn btn-outline-success btn-sm" type="submit" th:value="Изементь"/>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Дата добавления</th>
+                    <th scope="col">Калории</th>
+                    <th scope="col">Жиры</th>
+                    <th scope="col">Белки</th>
+                    <th scope="col">Углеводы</th>
+                    <th scope="col">Вес еды</th>
+                    <th scope="col">Изменить</th>
+
+                </tr>
+                </thead>
+
+                <tr th:each="productLoos : ${productLooses}">
+                    <form method="POST" enctype="multipart/form-data"
+                          th:action="@{/edit/dishes/{uid}/ (uid=${productLoos.id})}">
+                        <td th:text="${productLoos.id}"/>
+                        <td th:text="${productLoos.name}"/>
+                        <td th:text="${productLoos.date}"/>
+                        <td th:text="${productLoos.calories}"/>
+                        <td th:text="${productLoos.fats}"/>
+                        <td th:text="${productLoos.proteins}"/>
+                        <td th:text="${productLoos.carbohydrates}"/>
+                        <td th:text="${productLoos.weight}"/>
+                        <td>
+                            <input class="btn btn-outline-success btn-sm" type="submit" th:value="Изементь"/>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Дата добавления</th>
+                    <th scope="col">Калории</th>
+                    <th scope="col">Жиры</th>
+                    <th scope="col">Белки</th>
+                    <th scope="col">Углеводы</th>
+                    <th scope="col">Вес еды</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Изменить</th>
+
+                </tr>
+                </thead>
+
+                <tr th:each="productPiece : ${productPieces}">
+                    <form method="POST" enctype="multipart/form-data"
+                          th:action="@{/edit/dishes/{uid}/ (uid=${productPiece.id})}">
+                        <td th:text="${productPiece.id}"/>
+                        <td th:text="${productPiece.name}"/>
+                        <td th:text="${productPiece.date}"/>
+                        <td th:text="${productPiece.calories}"/>
+                        <td th:text="${productPiece.fats}"/>
+                        <td th:text="${productPiece.proteins}"/>
+                        <td th:text="${productPiece.carbohydrates}"/>
+                        <td th:text="${productPiece.weight}"/>
+                        <td th:text="${productPiece.count}"/>
                         <td>
                             <input class="btn btn-outline-success btn-sm" type="submit" th:value="Изементь"/>
                         </td>

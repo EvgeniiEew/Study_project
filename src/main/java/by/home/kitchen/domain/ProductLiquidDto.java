@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
-public abstract class Product {
+@Data
+public class ProductLiquidDto {
+    private Integer id;
     private String name;
     private Date date;
     private Integer calories;
@@ -19,8 +19,5 @@ public abstract class Product {
     private Integer proteins;
     private Integer carbohydrates;
     private boolean inStock;
-
-    public boolean isInStock() {
-        return inStock;
-    }
+    private Integer volume;
 }

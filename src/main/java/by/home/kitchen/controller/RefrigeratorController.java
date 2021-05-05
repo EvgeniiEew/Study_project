@@ -1,34 +1,42 @@
-//package by.home.kitchen.controller;
-//
-//import by.home.kitchen.domain.Product;
-//import by.home.kitchen.domain.ProductDto;
-//import by.home.kitchen.service.IProductService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//import javax.validation.Valid;
-//import java.util.List;
-//
-//@Controller
-//public class RefrigeratorController {
-//    private final String LIST_OF_DISHES = "DishesList";
-//    private final String LIST_OF_DISHES_ADD = "DishesAddList";
-//    private final String LIST_OF_DISHES_EDIT = "DishesEditList";
-//    @Autowired
-//    private IProductService iProductService;
-//
-//
-//    @GetMapping("/dishes")
-//    public String getListOfDishes(Model model) {
-//        List<Product> products = iProductService.findAll();
-//        model.addAttribute("products", products);
-//        return LIST_OF_DISHES;
-//    }
+package by.home.kitchen.controller;
+
+import by.home.kitchen.domain.*;
+import by.home.kitchen.service.IProductLiquidService;
+import by.home.kitchen.service.IProductLooseService;
+import by.home.kitchen.service.IProductPieceService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@Controller
+@RequiredArgsConstructor
+public class RefrigeratorController {
+    private final String LIST_OF_DISHES = "DishesList";
+    private final String LIST_OF_DISHES_ADD = "DishesAddList";
+    private final String LIST_OF_DISHES_EDIT = "DishesEditList";
+    private final IProductLiquidService iProductLiquidService;
+    private final IProductLooseService iProductLooseService;
+    private final IProductPieceService iProductPieceService;
+
+
+    @GetMapping("/dishes")
+    public String getListOfDishes(Model model) {
+        List<ProductLiquidDto> productLiquids = iProductLiquidService.findAll();
+        List<ProductLooseDto> productLooses =  iProductLooseService.findAll();
+        List<ProductPieceDto> productPieces =  iProductPieceService.findAll();
+        model.addAttribute("productLiquids", productLiquids);
+        model.addAttribute("productLooses", productLooses);
+        model.addAttribute("productPieces", productPieces);
+        return LIST_OF_DISHES;
+    }
 //
 //    @GetMapping("/dishesAdd")
 //    public String setDishes() {
@@ -61,4 +69,4 @@
 //        iProductService.editProduct(productDto, id);
 //        return "redirect:/dishes";
 //    }
-//}
+}

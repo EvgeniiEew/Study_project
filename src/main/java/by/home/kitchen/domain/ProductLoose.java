@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Data
 @Entity
-public class ProductLoose extends  Product{
+public class ProductLoose extends Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
